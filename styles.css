@@ -87,8 +87,13 @@ header h1 {
 }
 
 .accent {
+    height: 1vh;
+    width: 1vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
     background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    
+    text-align: center;
 }
 
 /* Modal styles */
