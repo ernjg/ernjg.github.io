@@ -1,10 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card');
+$(document).ready(function() {
+    $('.card').on('click', function() {
+        $('.overlay').removeClass('hidden');
+        $('.popup').removeClass('hidden');
+    });
 
-    cards.forEach(card => {
-        card.addEventListener('click', function() {
-            const projectId = card.getAttribute('data-project');
-            window.open(`project-details.html?project=${projectId}`, '_blank');
-        });
+    $('.close-btn').on('click', function() {
+        $('.overlay').addClass('hidden');
+        $('.popup').addClass('hidden');
     });
 });
