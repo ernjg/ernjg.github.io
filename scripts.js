@@ -1,11 +1,10 @@
-$(document).ready(function() {
-    $('.card').on('click', function() {
-        $('.overlay').removeClass('hidden');
-        $('.popup').removeClass('hidden');
-    });
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    $('.close-btn').on('click', function() {
-        $('.overlay').addClass('hidden');
-        $('.popup').addClass('hidden');
-    });
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    console.log(`Name: ${name}, Email: ${email}, Message: ${message}`);
+    alert("Your message has been submitted!");
 });
