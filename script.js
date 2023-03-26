@@ -52,3 +52,17 @@ function showDetails(projectId) {
     }
   };
 }
+
+
+
+
+
+
+const empty-grid = document.getElementById("empty-grid");
+
+for(let i = 0; i < 50; i++) {
+  const gridItem = document.createElement("div");
+  gridItem.classList.add("grid-item");
+  gridItem.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))`;
+  empty-grid.appendChild(gridItem);
+}
