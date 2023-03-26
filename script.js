@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gridItem.classList.add('grid-item');
 
     // Calculate the opacity for each grid item
-    const itemColor = (initialColor + i*131)%75;
+    const itemColor = (initialColor + i*37)%50;
     gridItem.style.backgroundColor = `0, 0%, (itemColor)%)`;
 
     // Add the grid item to the grid-container
