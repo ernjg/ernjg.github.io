@@ -41,6 +41,7 @@ header h1 {
 .grid-item {
     position: relative;
     cursor: pointer;
+    height: 100%;
 }
 
 .grid-item img {
