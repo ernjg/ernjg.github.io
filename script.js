@@ -58,15 +58,15 @@ function showDetails(projectId) {
 document.addEventListener('DOMContentLoaded', function () {
   const gridContainer = document.querySelector('.grid-container');
   const numberOfItemsToAdd = 15;
-  const initialHue = 360;
+  const initialColor = 100;
 
   for (let i = 0; i < numberOfItemsToAdd; i++) {
     const gridItem = document.createElement('div');
     gridItem.classList.add('grid-item');
 
     // Calculate the opacity for each grid item
-    const itemHue = (initialHue + i*85)%60;
-    gridItem.style.backgroundColor = `hsl(${itemHue}, 100%, 66%)`;
+    const itemColor = (initialColor + i*131)%75;
+    gridItem.style.backgroundColor = `0, 0%, (itemColor)%)`;
 
     // Add the grid item to the grid-container
     gridContainer.appendChild(gridItem);
