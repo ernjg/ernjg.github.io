@@ -86,6 +86,10 @@ header h1 {
     text-align: center;
 }
 
+.accent {
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    
+}
 
 /* Modal styles */
 .modal {
