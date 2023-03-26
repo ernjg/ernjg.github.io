@@ -1,10 +1,4 @@
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-
-    console.log(`Name: ${name}, Email: ${email}, Message: ${message}`);
-    alert("Your message has been submitted!");
-});
+function showDetails(projectId) {
+    alert("You clicked on " + projectId);
+    // Add your logic here to display more information about the project
+}
