@@ -94,6 +94,7 @@ header h1 {
 
 /* Modal content */
 .modal-content {
+  border-radius: 7px;
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
