@@ -57,7 +57,7 @@ function showDetails(projectId) {
 
 document.addEventListener('DOMContentLoaded', function () {
   const gridContainer = document.querySelector('.grid-container');
-  const numberOfItemsToAdd = 30;
+  const numberOfItemsToAdd = 15;
   const initialHue = 360;
 
   for (let i = 0; i < numberOfItemsToAdd; i++) {
