@@ -5,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
-        <nav>
-            <h1>Ernesto Gomez</h1>
-        </nav>
+        <h1>Your Name</h1>
     </header>
     <main>
-        <section class="cards-container">
-            <div class="card" data-project="project1">
-                <img src="image1.jpg" alt="Project 1">
-                <div class="overlay">
-                    <h3>Project 1</h3>
-                    <p>Short description of Project 1</p>
-                </div>
-            </div>
-            <!-- Add more cards as needed -->
+        <section class="cards">
+            <!-- Add your cards here -->
         </section>
     </main>
-    <script src="scripts.js"></script>
+    <div class="overlay hidden">
+        <div class="popup hidden">
+            <h2>Project Title</h2>
+            <button class="close-btn">X</button>
+            <div class="popup-content">
+                <!-- Add your images and text here -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
