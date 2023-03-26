@@ -96,6 +96,10 @@ header h1 {
     text-align: center;
 }
 
+accent h1 {
+    color: #fff;
+}
+
 /* Modal styles */
 .modal {
   display: none; /* Hidden by default */
