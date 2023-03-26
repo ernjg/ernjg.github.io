@@ -55,3 +55,20 @@ function showDetails(projectId) {
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const gridContainer = document.querySelector('.grid-container');
+  const numberOfItemsToAdd = 30;
+  const initialOpacity = 1;
+
+  for (let i = 0; i < numberOfItemsToAdd; i++) {
+    const gridItem = document.createElement('div');
+    gridItem.classList.add('grid-item');
+
+    // Calculate the opacity for each grid item
+    const opacity = initialOpacity - (i + 1) / numberOfItemsToAdd;
+    gridItem.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+
+    // Add the grid item to the grid-container
+    gridContainer.appendChild(gridItem);
+  }
+});
