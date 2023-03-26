@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function () {
     gridItem.classList.add('grid-item');
 
     // Calculate the opacity for each grid item
-    const itemHue = (initialHue + i*85)%360;
-    gridItem.style.background-image = 'linear-gradient(to right, hsl(${itemHue}, 100%, 65%), hsl(${itemHue}, 100%, 80%)';
+    const itemHue = (initialHue + i*85)%60;
+    gridItem.style.backgroundColor = `hsl(${itemHue}, 100%, 66%)`;
 
     // Add the grid item to the grid-container
     gridContainer.appendChild(gridItem);
