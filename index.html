@@ -3,111 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ernesto's Portfolio</title>
+    <title>Live Typing Poem</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Ernesto Gomez :3</h1>
-    </header>
-    
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalDescription"></p>
+    <div class="container">
+        <div class="poem">
+            <p id="poem-line"></p>
         </div>
     </div>
-   
-    <main>
-        <div class="grid-container">
-            <!-- Add more divs with the "grid-item" class for more projects -->
-            <div class="grid-item" onclick="showDetails('project1')">
-
-                    <img src="images/image1.jpg" alt="Project 1">
-
-                <div class="overlay">
-                    <div class="text">Project 1<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project2')">
-
-                    <img src="images/image2.jpg" alt="Project 2">
-
-                <div class="overlay">
-                    <div class="text">Project 2<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project3')">
-
-                    <img src="images/image3.jpg" alt="Project 3">
-
-                <div class="overlay">
-                    <div class="text">Project 3<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project4')">
-
-                    <img src="images/image4.jpg" alt="Project 4">
-
-                <div class="overlay">
-                    <div class="text">Project 4<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project5')">
-
-                    <img src="images/image5.jpg" alt="Project 5">
- 
-                <div class="overlay">
-                    <div class="text">Project 5<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project6')">
-
-                    <img src="images/image6.jpg" alt="Project 6">
-
-                <div class="overlay">
-                    <div class="text">Project 6<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project7')">
-
-                    <img src="images/image7.jpg" alt="Project 7">
-
-                <div class="overlay">
-                    <div class="text">Project 7<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project8')">
-                <img src="images/image8.jpg" alt="Project 8">
-                <div class="overlay">
-                    <div class="text">Project 8<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project9')">
-                <img src="images/image9.jpg" alt="Project 9">
-                <div class="overlay">
-                    <div class="text">Project 9<br>2022</div>
-                </div>
-            </div>
-            
-            <div class="grid-item" onclick="showDetails('project10')">
-                <img src="images/image10.jpg" alt="Project 10">
-                <div class="overlay">
-                    <div class="text">Project 10<br>2022</div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
