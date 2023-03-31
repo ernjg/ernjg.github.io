@@ -1,74 +1,20 @@
-// Define a dictionary of project information
-const projects = {
-  project1: {
-    title: "Project 1",
-    description: "This is a description of Project 1.",
-  },
-  // Add more projects here
-    
-     project2: {
-    title: "Project 2",
-    description: "This is a description of Project 2.",
-  },
-    
-     project3: {
-    title: "Project 3",
-    description: "This is a description of Project 3.",
-  },
-    
-      project4: {
-    title: "Project 4",
-    description: "This is a description of Project 4.",
-  },
-    
-      project5: {
-    title: "Project 5",
-    description: "This is a description of Project 5.",
-  },
-    
-    
-    
-    
-};
+const poemLine = document.getElementById('poem-line');
 
-function showDetails(projectId) {
-  const modal = document.getElementById("myModal");
-  const title = document.getElementById("modalTitle");
-  const description = document.getElementById("modalDescription");
+const poemBank = [
+    "Example poem line 1,\nExample poem line 2,\nExample poem line 3,\nExample poem line 4."
+];
 
-  title.textContent = projects[projectId].title;
-  description.textContent = projects[projectId].description;
+let currentPoem = '';
+let poemIndex = 0;
+let characterIndex = 0;
 
-  modal.style.display = "block";
-
-  const close = document.querySelector(".close");
-  close.onclick = function () {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function (event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
+function typePoem() {
+    if (characterIndex < poemBank[poemIndex].length) {
+        currentPoem += poemBank[poemIndex].charAt(characterIndex);
+        poemLine.textContent = currentPoem;
+        characterIndex++;
+        setTimeout(typePoem, 100); // Adjust the typing speed here (100ms)
     }
-  };
 }
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const gridContainer = document.querySelector('.grid-container');
-  const numberOfItemsToAdd = 15;
-  const initialColor = 100;
-
-  for (let i = 0; i < numberOfItemsToAdd; i++) {
-    const gridItem = document.createElement('div');
-    gridItem.classList.add('grid-item');
-
-    // Calculate the opacity for each grid item
-    const itemColor = (initialColor + i*37)%50;
-    gridItem.style.backgroundColor = `0, 0%, (itemColor)%)`;
-
-    // Add the grid item to the grid-container
-    gridContainer.appendChild(gridItem);
-  }
-});
+typePoem(); // Start typing the poem
