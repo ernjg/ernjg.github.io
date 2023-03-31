@@ -2,7 +2,8 @@ const poemLine = document.getElementById('poem-line');
 
 const poemBank = [
 
-    "mouse This rock dazzle unforgettable crowd.
+    "mouse 
+        This rock dazzle unforgettable crowd.
         This room exult wondrous moon.
         Dewy button brim the hippopotamus along that vegetable.
         That basket whisper that pillow of the motorcycle.
