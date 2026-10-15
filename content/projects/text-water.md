@@ -2,7 +2,7 @@
 title: Text water
 order: 1
 year: 2026
-description: The water above. Wind waves, refracted sunlight, characters.
+description: The water above. Wind, waves, refracted sunlight, characters.
 ---
 
 The header of this site is sunlight shining through a rippling pool, drawn on the pool floor in braille dots or ascii characters.

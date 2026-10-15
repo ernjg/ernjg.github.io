@@ -7,9 +7,13 @@
   --codeFont: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 body { font-family: var(--bodyFont); font-size: 15px; line-height: 1.55; }
+// The column's left edge sits about a fifth of the way across, like a wide outer margin on a printed page:
+// 35% of the free space goes to the left, the rest to the right. On narrow screens there is no free
+// space, so it falls back to the normal gutter.
+.page[data-frame="full-width"] { max-width: none; margin: 0; }
 .page[data-frame="full-width"] > #quartz-body {
   max-width: calc(72ch + 2 * max(16px, 4vw));
-  margin: 0;
+  margin: 0 0 0 max(0px, (100% - 72ch - 2 * max(16px, 4vw)) * 0.35); // was: margin: 0 auto;
   padding: 48px max(16px, 4vw) 0;
   box-sizing: border-box;
   .center, .center.full-width { max-width: 100%; min-width: 0; margin: 0; padding: 0; }
