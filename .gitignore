@@ -1,0 +1,7 @@
+node_modules/
+public/
+.quartz/
+.quartz-cache/
+prof/
+tsconfig.tsbuildinfo
+.DS_Store

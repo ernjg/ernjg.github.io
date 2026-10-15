@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "plugins": {
+    "site-footer": {
+      "source": "./local-plugins/site-footer",
+      "resolved": "/Users/ernestogomez/Desktop/ernjg.github.io/local-plugins/site-footer",
+      "commit": "local",
+      "installedAt": "2026-10-15T05:28:13.046Z"
+    },
+    "text-water": {
+      "source": "./local-plugins/text-water",
+      "resolved": "/Users/ernestogomez/Desktop/ernjg.github.io/local-plugins/text-water",
+      "commit": "local",
+      "installedAt": "2026-10-15T05:28:13.045Z"
+    }
+  }
+}

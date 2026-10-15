@@ -1,0 +1,36 @@
+@use "./base.scss";
+
+// One plain monospace column, about 72 characters wide, left aligned. Dark unless the visitor picks light.
+:root {
+  --headerFont: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bodyFont: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --codeFont: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+body { font-family: var(--bodyFont); font-size: 15px; line-height: 1.55; }
+.page[data-frame="full-width"] > #quartz-body {
+  max-width: calc(72ch + 2 * max(16px, 4vw));
+  margin: 0;
+  padding: 48px max(16px, 4vw) 0;
+  box-sizing: border-box;
+  .center, .center.full-width { max-width: 100%; min-width: 0; margin: 0; padding: 0; }
+}
+.page-header, .page-header > * { margin: 0 !important; }
+h1, h2, h3, h4 { font-family: var(--headerFont); font-size: 1em; font-weight: 500; margin: 0; }
+h1.article-title { margin: 0; font-size: 1em; }
+article { padding: 0; margin-top: 2.4em; }
+article h2, article h3 { margin: 2.4em 0 0.8em; }
+article > :first-child h2:first-child, article h2:first-child { margin-top: 0; }
+article p { margin: 0 0 0.8em; }
+a, a.internal { color: var(--secondary); background: none; padding: 0; border-radius: 0; font-weight: 400;
+  text-decoration: underline; text-decoration-color: var(--lightgray); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--dark); color: var(--secondary); }
+hr { display: none; }
+
+// Match the original: one size, one line height; names and headings in 500 ink, secondary text in gray.
+p, li, ul, ol { line-height: 1.55; }
+p, li { color: var(--dark); }
+h1, h2, h3, h4 { color: var(--dark); line-height: 1.55; }
+.tagline, .listing li.note, .listing .year, .cap, .cap *, .site-footer, .site-footer p,
+.modes button, .theme-switch button { color: var(--gray) !important; line-height: 1.55; }
+.modes button[aria-pressed="true"], .theme-switch button[aria-pressed="true"], .site-footer a { color: var(--dark) !important; }
+.listing .dots { color: var(--lightgray) !important; }

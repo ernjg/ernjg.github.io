@@ -1,0 +1,282 @@
+configuration:
+  pageTitle: Ernesto Gomez
+  pageTitleSuffix: ''
+  enableSPA: false
+  enablePopovers: false
+  locale: en-US
+  baseUrl: ernjg.github.io
+  ignorePatterns:
+  - private
+  - templates
+  - .obsidian
+  theme:
+    fontOrigin: googleFonts
+    cdnCaching: true
+    typography:
+      header: IBM Plex Mono
+      body: IBM Plex Mono
+      code: IBM Plex Mono
+    colors:
+      lightMode:
+        light: '#F4F3EF'
+        lightgray: '#C8C9C3'
+        gray: '#6C706D'
+        darkgray: '#1D1F1E'
+        dark: '#1D1F1E'
+        secondary: '#1D1F1E'
+        tertiary: '#6C706D'
+        highlight: rgba(29, 31, 30, 0.06)
+        textHighlight: '#fff23688'
+      darkMode:
+        light: '#121413'
+        lightgray: '#33362F'
+        gray: '#8D918C'
+        darkgray: '#DEDFDA'
+        dark: '#DEDFDA'
+        secondary: '#DEDFDA'
+        tertiary: '#8D918C'
+        highlight: rgba(222, 223, 218, 0.06)
+        textHighlight: '#b3aa0288'
+plugins:
+- source: '@quartz-community/created-modified-date'
+  enabled: true
+  options:
+    defaultDateType: modified
+    priority:
+    - frontmatter
+    - git
+    - filesystem
+  order: 10
+- source: '@quartz-community/syntax-highlighting'
+  enabled: true
+  options:
+    theme:
+      light: github-light
+      dark: github-dark
+    keepBackground: false
+  order: 20
+- source: '@quartz-community/obsidian-flavored-markdown'
+  enabled: true
+  options:
+    enableInHtmlEmbed: false
+    enableCheckbox: true
+  order: 30
+- source: '@quartz-community/github-flavored-markdown'
+  enabled: true
+  order: 40
+- source: '@quartz-community/table-of-contents'
+  enabled: false
+  order: 50
+  layout:
+    position: right
+    priority: 30
+- source: '@quartz-community/crawl-links'
+  enabled: true
+  options:
+    markdownLinkResolution: shortest
+  order: 60
+- source: '@quartz-community/description'
+  enabled: true
+  order: 70
+- source: '@quartz-community/latex'
+  enabled: false
+  options:
+    renderEngine: katex
+  order: 80
+- source: '@quartz-community/citations'
+  enabled: false
+  order: 85
+- source: '@quartz-community/hard-line-breaks'
+  enabled: false
+  order: 90
+- source: '@quartz-community/ox-hugo'
+  enabled: false
+  order: 91
+- source: '@quartz-community/roam'
+  enabled: false
+  order: 92
+- source: '@quartz-community/quartz-fonts'
+  enabled: false
+- source: '@quartz-themes/core'
+  enabled: false
+  options:
+    theme: tokyo-night
+    mode: both
+- source: '@quartz-community/remove-draft'
+  enabled: true
+- source: '@quartz-community/explicit-publish'
+  enabled: false
+- source: '@quartz-community/unlisted-pages'
+  enabled: true
+  options: {}
+  order: 45
+- source: '@quartz-community/encrypted-pages'
+  enabled: false
+  options:
+    iterations: 600000
+    passwordField: password
+    unlistWhenEncrypted: false
+    outputPath: static/encryptedContentIndex.json
+- source: '@quartz-community/stacked-pages'
+  enabled: false
+  layout:
+    position: afterBody
+    priority: 50
+    display: all
+- source: '@quartz-community/alias-redirects'
+  enabled: true
+- source: '@quartz-community/content-index'
+  enabled: true
+  options:
+    enableSiteMap: true
+    enableRSS: true
+- source: '@quartz-community/favicon'
+  enabled: true
+- source: '@quartz-community/og-image'
+  enabled: false
+- source: '@quartz-community/cname'
+  enabled: false
+- source: '@quartz-community/canvas-page'
+  enabled: false
+- source: '@quartz-community/content-page'
+  enabled: true
+- source: '@quartz-community/folder-page'
+  enabled: true
+- source: '@quartz-community/tag-page'
+  enabled: true
+- source: '@quartz-community/explorer'
+  enabled: false
+  layout:
+    position: left
+    priority: 50
+- source: '@quartz-community/graph'
+  enabled: false
+  layout:
+    position: right
+    priority: 10
+- source: '@quartz-community/search'
+  enabled: false
+  layout:
+    position: left
+    priority: 20
+    group: toolbar
+    groupOptions:
+      grow: true
+- source: '@quartz-community/backlinks'
+  enabled: false
+  layout:
+    position: right
+    priority: 50
+- source: '@quartz-community/article-title'
+  enabled: true
+  layout:
+    position: beforeBody
+    priority: 10
+- source: '@quartz-community/content-meta'
+  enabled: false
+  layout:
+    position: beforeBody
+    priority: 20
+- source: '@quartz-community/tag-list'
+  enabled: false
+  layout:
+    position: beforeBody
+    priority: 30
+- source: '@quartz-community/page-title'
+  enabled: false
+  layout:
+    position: left
+    priority: 10
+- source: '@quartz-community/darkmode'
+  enabled: false
+  layout:
+    position: left
+    priority: 30
+    group: toolbar
+- source: '@quartz-community/reader-mode'
+  enabled: false
+  layout:
+    position: left
+    priority: 35
+    group: toolbar
+- source: '@quartz-community/breadcrumbs'
+  enabled: false
+  layout:
+    position: beforeBody
+    priority: 5
+    condition: not-index
+- source: '@quartz-community/comments'
+  enabled: false
+  options:
+    provider: giscus
+    options: {}
+  layout:
+    position: afterBody
+    priority: 10
+- source: '@quartz-community/footer'
+  enabled: false
+  options:
+    links:
+      GitHub: https://github.com/jackyzha0/quartz
+      Discord Community: https://discord.gg/cRFFHYye7t
+  layout:
+    position: footer
+    priority: 50
+- source: '@quartz-community/recent-notes'
+  enabled: false
+- source: '@quartz-community/spacer'
+  enabled: false
+  options: {}
+  order: 25
+  layout:
+    position: left
+    priority: 25
+    display: mobile-only
+- source: '@quartz-community/bases-page'
+  enabled: false
+  options: {}
+  order: 50
+- source: '@quartz-community/note-properties'
+  enabled: true
+  options:
+    includeAll: false
+    includedProperties:
+    - description
+    - tags
+    - aliases
+    excludedProperties: []
+    hidePropertiesView: true
+    delimiters: '---'
+    language: yaml
+  order: 5
+- source: ./local-plugins/text-water
+  enabled: true
+  options: {}
+  order: 50
+  layout:
+    position: beforeBody
+    priority: 5
+- source: ./local-plugins/site-footer
+  enabled: true
+  options:
+    links:
+      GitHub: '#'
+      CV: '#'
+  order: 50
+  layout:
+    position: footer
+    priority: 50
+layout:
+  groups: {}
+  byPageType:
+    content:
+      template: full-width
+    folder:
+      template: full-width
+    tag:
+      template: full-width
+    '404':
+      positions:
+        beforeBody: []
+        left: []
+        right: []

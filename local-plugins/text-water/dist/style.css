@@ -1,0 +1,49 @@
+/* the water band */
+.home { display: flex; flex-direction: column; gap: 2.4em; margin-top: 0.2em; }
+.home-head { display: flex; flex-direction: column; gap: 0.2em; }
+.home .tagline { color: var(--gray); margin: 0; }
+body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title, body[data-slug="gallery"] article { display: none; }
+.home pre#water {
+  margin: 0 !important; padding: 0 !important; border: 0 !important; background: none !important; border-radius: 0 !important;
+  color: var(--dark); font-family: var(--codeFont); font-size: var(--water-size, 9px); line-height: 1.05;
+  font-variant-ligatures: none; overflow: hidden; white-space: pre; cursor: crosshair;
+  user-select: text; touch-action: pan-y; transition: color 1.2s;
+}
+.home .cap { color: var(--gray); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 2ch; margin: 0.6em 0 0; }
+.modes { display: inline-flex; gap: 1ch; }
+.modes button { font: inherit; color: var(--gray); background: none; border: 0; padding: 0; cursor: pointer; }
+.modes button[aria-pressed="true"] { color: var(--dark); }
+.modes button[aria-pressed="true"]::before { content: "["; }
+.modes button[aria-pressed="true"]::after { content: "]"; }
+/* project and note lists: name ..... year */
+.listing h2 { margin: 0 0 0.8em !important; }
+.listing ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.15em; }
+.listing li { margin: 0; }
+.listing li.row { display: flex; gap: 1ch; min-width: 0; }
+.listing .name { flex: 0 0 auto; }
+.listing .dots { flex: 1 1 auto; overflow: hidden; white-space: nowrap; color: var(--lightgray); min-width: 2ch; }
+.listing .dots::before { content: "................................................................................................................................................................................................................................................"; }
+.listing .year { flex: 0 0 auto; color: var(--gray); }
+.listing li.note { color: var(--gray); padding-left: 2ch; margin: -0.1em 0 0.35em; }
+.home-link { margin: 0 0 0.4em; font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .home pre#water { transition: none; } }
+/* home | gallery tabs */
+.tabs { display: flex; gap: 1ch; font-size: 13px; margin-top: 0.6em; }
+.tabs a { color: var(--gray) !important; text-decoration: none; }
+.tabs a[aria-current="page"] { color: var(--dark) !important; }
+.tabs a[aria-current="page"]::before { content: "["; }
+.tabs a[aria-current="page"]::after { content: "]"; }
+.tabs a:hover { color: var(--dark) !important; }
+/* gallery: images from notes, each opening its note */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.6em 1.2em; }
+.gallery .tile { display: flex; flex-direction: column; gap: 0.4em; text-decoration: none; }
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; margin: 0; border-radius: 0; filter: grayscale(0.4); transition: filter 0.2s; }
+.gallery .tile:hover img { filter: none; }
+.gallery .label { display: flex; flex-direction: column; font-size: 13px; color: var(--dark); }
+.gallery .label .year { color: var(--gray); }
+/* captioned images on project and note pages */
+article figure { margin: 1.2em 0; }
+article figure img { display: block; max-width: 100%; margin: 0; border-radius: 0; }
+article figure figcaption { margin-top: 0.4em; font-size: 13px; color: var(--gray); }
+.gallery .tile, .gallery .tile:hover { text-decoration: none !important; }
+.gallery .label .year { color: var(--gray) !important; }
