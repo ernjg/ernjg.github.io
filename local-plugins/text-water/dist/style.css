@@ -38,6 +38,13 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
 .listing .dots { flex: 1 1 0; overflow: hidden; white-space: nowrap; color: var(--lightgray); min-width: 2ch; }
 .listing .dots::before { content: "................................................................................................................................................................................................................................................"; }
 .listing .year { flex: 0 0 auto; color: var(--gray); }
+/* narrow screens: the title on its own line, then "[label] year" indented under it, no dot leader */
+@media (max-width: 600px) {
+  .listing .row { flex-wrap: wrap; padding-left: 2ch; }
+  .listing .name { flex: 0 0 calc(100% + 2ch); margin-left: -2ch; }
+  .listing .dots { display: none; }
+  .listing li.entry { padding: 0.3em 0; }
+}
 /* [label] before the year, colored by kind; unknown labels stay gray */
 :root { --label-research: #546F8A; --label-industry: #897044; --label-academic: #56755C; --label-teaching: #73678E; --label-personal: #88606C; }
 :root[saved-theme="dark"] { --label-research: #AEC3DA; --label-industry: #DCC49A; --label-academic: #AECCB2; --label-teaching: #AC9FC5; --label-personal: #DCB4BE; }
