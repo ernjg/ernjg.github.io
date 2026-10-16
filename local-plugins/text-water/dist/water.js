@@ -240,10 +240,11 @@
     sun = sunPos(Date.now());
     const time = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
     const phase = sun.el > 8 ? 'day' : sun.el > 0 ? 'golden hour' : sun.el > -6 ? 'twilight' : 'night';
-    const compass = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.round(wx.from / 45) % 8];
-    const sky = wx.rain > 0 ? (wx.rain > 2.5 ? 'heavy rain' : 'rain') : wx.cloud > 80 ? 'overcast' : wx.cloud > 30 ? 'some clouds' : 'clear';
+    // an arrow pointing where the wind blows (the API reports where it comes from): from the E -> ←  (IBM Plex Mono has all eight)
+    const arrow = ['↑', '↗', '→', '↘', '↓', '↙', '←', '↖'][Math.round((wx.from + 180) / 45) % 8];
+    const sky = wx.rain > 0 ? (wx.rain > 2.5 ? 'heavy rain' : 'rain') : wx.cloud > 80 ? 'overcast' : wx.cloud > 30 ? 'some clouds' : 'clear skies';
     sunline.textContent = wx.ok
-      ? `${PLACE} ${time}, ${Math.round(wx.mph)} mph wind from the ${compass}, ${sky}`
+      ? `${PLACE} ${time}, ${sky} and ${Math.round(wx.mph)} mph wind (${arrow})`
       : `${PLACE} ${time}, ${phase}${wx.failed ? ', no weather data here' : ''}`;
     const theme = document.documentElement.getAttribute('saved-theme') === 'light' ? 1 : 0;
     pre.style.color = sun.el > 8 ? COLORS.day[theme] : sun.el > -3 ? COLORS.dusk[theme] : COLORS.night[theme];
