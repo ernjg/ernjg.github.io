@@ -1,8 +1,9 @@
 ---
-title: Text water
+title: Light, Wind, Water, Chars
 order: 1
 year: 2026
-description: The water above. Wind, waves, refracted sunlight, characters.
+label: personal
+description: The interactive visual above.
 ---
 
 The header of this site is sunlight shining through a rippling pool, drawn on the pool floor in braille dots or ascii characters.
@@ -13,4 +14,4 @@ The header of this site is sunlight shining through a rippling pool, drawn on th
 - **Light:** rays bend at the surface by Snell's law and land on the floor; where they bunch up, the floor is bright.
 - **Characters:** each braille dot or character shows how much light landed under it.
 
-The sun is computed live for San Antonio, and the color of the water follows it.
+The sun and wind is computed live for San Antonio, and the color of the water follows it.

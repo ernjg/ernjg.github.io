@@ -10,25 +10,41 @@ import { resolveRelative, pathToRoot } from "@quartz-community/utils"
 const script = readFileSync(new URL("./water.js", import.meta.url), "utf-8")
 const css = readFileSync(new URL("./style.css", import.meta.url), "utf-8")
 
-// pages in a folder, newest first (frontmatter `year` or `date`), then by `order`, then by title
+// pages in a folder: featured first, then newest (frontmatter `year` or `date`; placeholders like "[YEAR]" last),
+// then by `order`, then by title. Projects may also carry a `label` (research, industry, academic, teaching, personal, or free text),
+// shown as a colored [label] before the year; the span carries data-label so labels can later be used to filter the list.
+const sortKey = (when) => (/^\d/.test(when) ? when : "")
+
 function pagesIn(allFiles, folder) {
   return allFiles
     .filter((f) => f.slug?.startsWith(folder + "/") && !f.slug.endsWith("/index") && f.frontmatter?.draft !== true)
-    .map((f) => ({ slug: f.slug, ast: f.htmlAst, order: Number(f.frontmatter?.order ?? 99), title: f.frontmatter?.title ?? f.slug, when: String(f.frontmatter?.year ?? f.frontmatter?.date ?? ""), note: f.frontmatter?.description ?? "" }))
-    .sort((a, b) => b.when.localeCompare(a.when) || a.order - b.order || a.title.localeCompare(b.title))
+    .map((f) => ({ slug: f.slug, ast: f.htmlAst, order: Number(f.frontmatter?.order ?? 99), title: f.frontmatter?.title ?? f.slug, when: String(f.frontmatter?.year ?? f.frontmatter?.date ?? ""), note: f.frontmatter?.description ?? "", label: String(f.frontmatter?.label ?? "").trim(), featured: f.frontmatter?.featured === true }))
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || sortKey(b.when).localeCompare(sortKey(a.when)) || a.order - b.order || a.title.localeCompare(b.title))
 }
 
-function List({ from, title, id, pages }) {
+// label filter buttons under a list heading: "all", the known kinds (always, in this order), then any other label in use
+const KNOWN_LABELS = ["research", "industry", "academic", "teaching", "personal"]
+function Filters({ pages }) {
+  const used = [...new Set(pages.map((p) => p.label.toLowerCase()).filter(Boolean))]
+  const labels = [...KNOWN_LABELS, ...used.filter((l) => !KNOWN_LABELS.includes(l))]
+  return jsx("p", { class: "filters", role: "group", "aria-label": "Show projects labeled", children: ["all", ...labels].map((l) =>
+    jsx("button", { type: "button", "data-filter": l, "aria-pressed": l === "all" ? "true" : "false", children: l })) })
+}
+
+function List({ from, title, id, pages, filters = false }) {
   return jsxs("section", { id, class: "listing", children: [
     jsx("h2", { children: title }),
-    jsx("ul", { children: pages.flatMap((p) => [
-      jsxs("li", { class: "row", children: [
-        jsx("a", { class: "name internal", href: resolveRelative(from, p.slug), children: p.title }),
-        jsx("span", { class: "dots", "aria-hidden": "true" }),
-        jsx("span", { class: "year", children: p.when.slice(0, 10) }),
-      ] }),
-      p.note ? jsx("li", { class: "note", children: p.note }) : null,
-    ]) }),
+    filters ? jsx(Filters, { pages }) : null,
+    jsx("ul", { children: pages.map((p) =>
+      jsxs("li", { class: "entry", "data-label": p.label.toLowerCase(), children: [
+        jsxs("div", { class: "row", children: [
+          jsx("a", { class: "name internal", href: resolveRelative(from, p.slug), children: p.featured ? "* " + p.title : p.title }),
+          jsx("span", { class: "dots", "aria-hidden": "true" }),
+          p.label ? jsx("span", { class: "label", "data-label": p.label.toLowerCase(), children: "[" + p.label + "]" }) : null,
+          jsx("span", { class: "year", children: p.when.slice(0, 10) }),
+        ] }),
+        p.note ? jsx("p", { class: "note", children: p.note }) : null,
+      ] })) }),
   ] })
 }
 
@@ -95,7 +111,7 @@ export function TextWater() {
           ] }),
         ] }),
       ] }),
-      jsx(List, { from: slug, title: "Projects", id: "projects", pages: pagesIn(allFiles, "projects") }),
+      jsx(List, { from: slug, title: "Projects", id: "projects", pages: pagesIn(allFiles, "projects"), filters: true }),
       jsx(List, { from: slug, title: "Notes", id: "notes", pages: pagesIn(allFiles, "notes") }),
     ] })
   }
@@ -107,7 +123,17 @@ export function TextWater() {
     cap.textContent = img.alt
     img.replaceWith(fig); fig.append(img, cap)
   }`
-  Component.afterDOMLoaded = script + "\n" + captions
+  // label filter buttons: show only the entries whose data-label matches
+  const filtering = `for (const group of document.querySelectorAll(".listing .filters")) {
+    const items = group.parentElement.querySelectorAll("li[data-label]")
+    group.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-filter]")
+      if (!b) return
+      for (const o of group.querySelectorAll("button")) o.setAttribute("aria-pressed", String(o === b))
+      for (const li of items) li.hidden = b.dataset.filter !== "all" && li.dataset.label !== b.dataset.filter
+    })
+  }`
+  Component.afterDOMLoaded = script + "\n" + captions + "\n" + filtering
   return Component
 }
 export default TextWater

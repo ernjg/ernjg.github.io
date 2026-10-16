@@ -25,7 +25,7 @@
   // drawing: a dot or glyph appears once light passes LO, fully dense at LO + SPAN (flat water = 1)
   const BRAILLE = { lo: 0.75, span: 1.5 }, ASCII = { lo: 0.6, span: 2.6 };
   const RAMP = " .,'`:;-~=+*xoO#%@";
-  const COLORS = { dusk: ['#F0BC7C', '#9A5A18'], night: ['#A3B2DC', '#5A6690'] };   // [dark, light theme]
+  const COLORS = { day: ['#9CCFD8', '#2F7F8C'], dusk: ['#F0BC7C', '#9A5A18'], night: ['#A3B2DC', '#5A6690'] };   // [dark, light theme]
 
   const pre = document.getElementById('water'), sunline = document.getElementById('sunline');
   if (!pre || pre.dataset.running) return;   // only on the home page, and only once
@@ -246,7 +246,7 @@
       ? `${PLACE} ${time}, ${Math.round(wx.mph)} mph wind from the ${compass}, ${sky}`
       : `${PLACE} ${time}, ${phase}${wx.failed ? ', no weather data here' : ''}`;
     const theme = document.documentElement.getAttribute('saved-theme') === 'light' ? 1 : 0;
-    pre.style.color = sun.el > 8 ? '' : sun.el > -3 ? COLORS.dusk[theme] : COLORS.night[theme];
+    pre.style.color = sun.el > 8 ? COLORS.day[theme] : sun.el > -3 ? COLORS.dusk[theme] : COLORS.night[theme];
   }
 
   // ---- input ---------------------------------------------------------------------------------

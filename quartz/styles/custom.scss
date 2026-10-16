@@ -34,7 +34,7 @@ hr { display: none; }
 p, li, ul, ol { line-height: 1.55; }
 p, li { color: var(--dark); }
 h1, h2, h3, h4 { color: var(--dark); line-height: 1.55; }
-.tagline, .listing li.note, .listing .year, .cap, .cap *, .site-footer, .site-footer p,
+.tagline, .listing .note, .listing .year, .cap, .cap *, .site-footer, .site-footer p,
 .modes button, .theme-switch button { color: var(--gray) !important; line-height: 1.55; }
 .modes button[aria-pressed="true"], .theme-switch button[aria-pressed="true"], .site-footer a { color: var(--dark) !important; }
 .listing .dots { color: var(--lightgray) !important; }

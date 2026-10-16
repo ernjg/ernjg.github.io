@@ -63,6 +63,8 @@ plugins:
   order: 30
 - source: '@quartz-community/github-flavored-markdown'
   enabled: true
+  options:
+    linkHeadings: false
   order: 40
 - source: '@quartz-community/table-of-contents'
   enabled: false

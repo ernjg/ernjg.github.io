@@ -1,6 +1,9 @@
 /* the water band */
 .home { display: flex; flex-direction: column; gap: 2.4em; margin-top: 0.2em; }
-.home-head { display: flex; flex-direction: column; gap: 0.2em; }
+/* title and tagline on the left, the home | gallery tabs top right on the title line */
+.home-head { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "title tabs" "tagline tagline"; align-items: baseline; gap: 0.2em 2ch; }
+.home-head h1 { grid-area: title; margin: 0; }
+.home-head .tagline { grid-area: tagline; }
 .home .tagline { color: var(--gray); margin: 0; }
 body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title, body[data-slug="gallery"] article { display: none; }
 .home pre#water {
@@ -15,21 +18,44 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
 .modes button[aria-pressed="true"] { color: var(--dark); }
 .modes button[aria-pressed="true"]::before { content: "["; }
 .modes button[aria-pressed="true"]::after { content: "]"; }
-/* project and note lists: name ..... year */
+/* project and note lists: name ..... [label] year  (featured projects get a leading "* "; names have no underline and dim on hover) */
 .listing h2 { margin: 0 0 0.8em !important; }
-.listing ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.15em; }
+/* label filter buttons under the Projects heading: all research industry ...; the active one is bracketed */
+.listing .filters { display: flex; flex-wrap: wrap; gap: 2ch; font-size: 13px; margin: -0.5em 0 0.9em; }
+.listing .filters button { font: inherit; color: var(--gray); background: none; border: 0; padding: 0; cursor: pointer; }
+.listing .filters button:hover, .listing .filters button[aria-pressed="true"] { color: var(--dark); }
+.listing .filters button[aria-pressed="true"]::before { content: "["; }
+.listing .filters button[aria-pressed="true"]::after { content: "]"; }
+.listing ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+/* entries are spaced with padding, not gaps or margins, so the hover area is continuous: moving the cursor down from one
+   row hands off straight to the next with no dead zone where the open description would collapse under the cursor */
+.listing li.entry { padding: 0.075em 0; }
 .listing li { margin: 0; }
-.listing li.row { display: flex; gap: 1ch; min-width: 0; }
-.listing .name { flex: 0 0 auto; }
+.listing li[hidden] { display: none !important; }
+.listing .row { display: flex; gap: 1ch; min-width: 0; }
+.listing .name { flex: 0 0 auto; text-decoration: none !important; color: var(--dark) !important; transition: color 0.15s; }
+.listing .name:hover { color: var(--gray) !important; }
 .listing .dots { flex: 1 1 auto; overflow: hidden; white-space: nowrap; color: var(--lightgray); min-width: 2ch; }
 .listing .dots::before { content: "................................................................................................................................................................................................................................................"; }
 .listing .year { flex: 0 0 auto; color: var(--gray); }
-.listing li.note { color: var(--gray); padding-left: 2ch; margin: -0.1em 0 0.35em; }
+/* [label] before the year, colored by kind; unknown labels stay gray */
+:root { --label-research: #546F8A; --label-industry: #897044; --label-academic: #56755C; --label-teaching: #73678E; --label-personal: #88606C; }
+:root[saved-theme="dark"] { --label-research: #AEC3DA; --label-industry: #DCC49A; --label-academic: #AECCB2; --label-teaching: #AC9FC5; --label-personal: #DCB4BE; }
+.listing .label { flex: 0 0 auto; color: var(--gray); }
+.listing .label[data-label="research"] { color: var(--label-research); }
+.listing .label[data-label="industry"] { color: var(--label-industry); }
+.listing .label[data-label="academic"] { color: var(--label-academic); }
+.listing .label[data-label="teaching"] { color: var(--label-teaching); }
+.listing .label[data-label="personal"] { color: var(--label-personal); }
+/* the one-line description is hidden until the row is hovered (or its link focused); it then drops down under the row */
+.listing .note { display: none; margin: -0.1em 0 0; padding: 0 0 0.35em 2ch; color: var(--gray); }
+.listing li.entry:hover .note, .listing li.entry:focus-within .note { display: block; }
+@media (hover: none) { .listing .note { display: block; } }
 .home-link { margin: 0 0 0.4em; font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .home pre#water { transition: none; } }
 /* home | gallery tabs */
-.tabs { display: flex; gap: 1ch; font-size: 13px; margin-top: 0.6em; }
-.tabs a { color: var(--gray) !important; text-decoration: none; }
+.tabs { grid-area: tabs; justify-self: end; display: flex; gap: 1ch; font-size: 13px; }
+.tabs a { color: var(--gray) !important; text-decoration: none !important; }
 .tabs a[aria-current="page"] { color: var(--dark) !important; }
 .tabs a[aria-current="page"]::before { content: "["; }
 .tabs a[aria-current="page"]::after { content: "]"; }
