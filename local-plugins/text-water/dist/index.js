@@ -133,7 +133,14 @@ export function TextWater() {
       for (const li of items) li.hidden = b.dataset.filter !== "all" && li.dataset.label !== b.dataset.filter
     })
   }`
-  Component.afterDOMLoaded = script + "\n" + captions + "\n" + filtering
+  // on touch screens there is no hover: tapping a row anywhere but its title link opens that description (and closes others)
+  const tapping = `for (const row of document.querySelectorAll(".listing .row")) row.addEventListener("click", (e) => {
+    if (e.target.closest("a")) return
+    const entry = row.parentElement, open = entry.classList.contains("open")
+    for (const o of entry.parentElement.querySelectorAll("li.open")) o.classList.remove("open")
+    if (!open) entry.classList.add("open")
+  })`
+  Component.afterDOMLoaded = script + "\n" + captions + "\n" + filtering + "\n" + tapping
   return Component
 }
 export default TextWater

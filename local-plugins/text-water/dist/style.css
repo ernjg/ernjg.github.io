@@ -13,7 +13,7 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
   user-select: text; touch-action: pan-y; transition: color 1.2s;
 }
 .home .cap { color: var(--gray); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 2ch; margin: 0.6em 0 0; }
-.modes { display: inline-flex; gap: 1ch; }
+.modes { display: inline-flex; gap: 1ch; margin-left: auto; }
 .modes button { font: inherit; color: var(--gray); background: none; border: 0; padding: 0; cursor: pointer; }
 .modes button[aria-pressed="true"] { color: var(--dark); }
 .modes button[aria-pressed="true"]::before { content: "["; }
@@ -21,7 +21,7 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
 /* project and note lists: name ..... [label] year  (featured projects get a leading "* "; names have no underline and dim on hover) */
 .listing h2 { margin: 0 0 0.8em !important; }
 /* label filter buttons under the Projects heading: all research industry ...; the active one is bracketed */
-.listing .filters { display: flex; flex-wrap: wrap; gap: 2ch; font-size: 13px; margin: -0.5em 0 0.9em; }
+.listing .filters { display: flex; flex-wrap: wrap; gap: 0.2em 2ch; font-size: 13px; margin: -0.5em 0 0.9em; }
 .listing .filters button { font: inherit; color: var(--gray); background: none; border: 0; padding: 0; cursor: pointer; }
 .listing .filters button:hover, .listing .filters button[aria-pressed="true"] { color: var(--dark); }
 .listing .filters button[aria-pressed="true"]::before { content: "["; }
@@ -33,9 +33,9 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
 .listing li { margin: 0; }
 .listing li[hidden] { display: none !important; }
 .listing .row { display: flex; gap: 1ch; min-width: 0; }
-.listing .name { flex: 0 0 auto; text-decoration: none !important; color: var(--dark) !important; transition: color 0.15s; }
+.listing .name { flex: 0 1 auto; min-width: 0; text-decoration: none !important; color: var(--dark) !important; transition: color 0.15s; }
 .listing .name:hover { color: var(--gray) !important; }
-.listing .dots { flex: 1 1 auto; overflow: hidden; white-space: nowrap; color: var(--lightgray); min-width: 2ch; }
+.listing .dots { flex: 1 1 0; overflow: hidden; white-space: nowrap; color: var(--lightgray); min-width: 2ch; }
 .listing .dots::before { content: "................................................................................................................................................................................................................................................"; }
 .listing .year { flex: 0 0 auto; color: var(--gray); }
 /* [label] before the year, colored by kind; unknown labels stay gray */
@@ -49,8 +49,7 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
 .listing .label[data-label="personal"] { color: var(--label-personal); }
 /* the one-line description is hidden until the row is hovered (or its link focused); it then drops down under the row */
 .listing .note { display: none; margin: -0.1em 0 0; padding: 0 0 0.35em 2ch; color: var(--gray); }
-.listing li.entry:hover .note, .listing li.entry:focus-within .note { display: block; }
-@media (hover: none) { .listing .note { display: block; } }
+.listing li.entry:hover .note, .listing li.entry:focus-within .note, .listing li.entry.open .note { display: block; }
 .home-link { margin: 0 0 0.4em; font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .home pre#water { transition: none; } }
 /* home | gallery tabs */
