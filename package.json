@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
+    "dev": "./quartz/bootstrap-cli.mjs build --serve -d ../E1/Site",
+    "build": "./quartz/bootstrap-cli.mjs build -d ../E1/Site",
     "install-plugins": "npx tsx ./quartz/plugins/loader/install-plugins.ts",
     "prebuild": "npm run install-plugins"
   },

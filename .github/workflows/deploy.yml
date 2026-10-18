@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  repository_dispatch:        # sent by the vault repo when its Site/ folder changes
+    types: [content]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,6 +24,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # the pages live in the private vault repo (its Site/ folder); VAULT_TOKEN is a fine-grained
+      # personal access token with Contents read on ernjg/E1-vault
+      - name: Fetch the content from the vault
+        uses: actions/checkout@v4
+        with:
+          repository: ernjg/E1-vault
+          token: ${{ secrets.VAULT_TOKEN }}
+          path: vault
+          sparse-checkout: Site
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -29,7 +41,7 @@ jobs:
       - name: Install Quartz plugins
         run: npx quartz plugin install --from-config
       - name: Build Quartz
-        run: npx quartz build
+        run: npx quartz build -d vault/Site
         env:
           SITE_EMAIL: ${{ secrets.SITE_EMAIL }}
       - name: Upload artifact
