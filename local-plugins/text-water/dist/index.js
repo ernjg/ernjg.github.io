@@ -80,6 +80,15 @@ function Gallery({ from, pages }) {
     ] })) })
 }
 
+// desktop only: a contact sheet of the gallery's photos in the empty space right of the home column (see .margin-sheet)
+function MarginSheet({ from, pages }) {
+  const root = pathToRoot(from)
+  const tiles = pages.flatMap((p) => captionedImages(p).map((img) => ({ ...img, page: p })))
+  if (tiles.length === 0) return null
+  return jsx("nav", { class: "margin-sheet", "aria-label": "Photos", children: tiles.map(({ src, caption, page }) =>
+    jsx("a", { href: resolveRelative(from, page.slug), children: jsx("img", { src: `${root}/${src}`, alt: caption, loading: "lazy" }) })) })
+}
+
 export function TextWater() {
   const Component = ({ fileData, allFiles }) => {
     const slug = fileData.slug
@@ -110,6 +119,7 @@ export function TextWater() {
             jsx("button", { type: "button", id: "m-braille", "aria-pressed": "false", children: "braille" }),
           ] }),
         ] }),
+        jsx(MarginSheet, { from: slug, pages: [...pagesIn(allFiles, "projects"), ...pagesIn(allFiles, "notes")].sort((a, b) => b.when.localeCompare(a.when)) }),
       ] }),
       jsx(List, { from: slug, title: "Projects", id: "projects", pages: pagesIn(allFiles, "projects"), filters: true }),
       jsx(List, { from: slug, title: "Notes", id: "notes", pages: pagesIn(allFiles, "notes") }),

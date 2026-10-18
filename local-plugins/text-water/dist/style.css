@@ -59,6 +59,16 @@ body[data-slug="index"] .article-title, body[data-slug="gallery"] .article-title
 .listing li.entry:hover .note, .listing li.entry:focus-within .note, .listing li.entry.open .note { display: block; }
 .home-link { margin: 0 0 0.4em; font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { .home pre#water { transition: none; } }
+/* desktop only: contact sheet of the gallery's photos to the right of the column, beside the water */
+.home section.water { position: relative; }
+.margin-sheet { display: none; }
+@media (min-width: 1300px) {
+  .margin-sheet { display: grid; position: absolute; top: 0; left: calc(100% + 72px); grid-template-columns: repeat(3, clamp(88px, 7vw, 132px)); gap: 8px; }
+  .margin-sheet a { display: block; aspect-ratio: 1; filter: grayscale(1); opacity: 0.55; transition: filter 0.5s, opacity 0.5s; text-decoration: none !important; background: none; }
+  .margin-sheet a:hover, .margin-sheet a:focus-visible { filter: none; opacity: 1; }
+  .margin-sheet img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; border-radius: 0; }
+  @media (prefers-reduced-motion: reduce) { .margin-sheet a { transition: none; } }
+}
 /* home | gallery tabs */
 .tabs { grid-area: tabs; justify-self: end; display: flex; gap: 1ch; font-size: 13px; }
 .tabs a { color: var(--gray) !important; text-decoration: none !important; }
