@@ -10,16 +10,21 @@ import { resolveRelative, pathToRoot } from "@quartz-community/utils"
 const script = readFileSync(new URL("./water.js", import.meta.url), "utf-8")
 const css = readFileSync(new URL("./style.css", import.meta.url), "utf-8")
 
-// pages in a folder: featured first, then newest (frontmatter `year` or `date`; placeholders like "[YEAR]" last),
-// then by `order`, then by title. Projects may also carry a `label` (research, industry, academic, teaching, personal, or free text),
-// shown as a colored [label] before the year; the span carries data-label so labels can later be used to filter the list.
+// pages in a folder: featured first, then newest by frontmatter `date` (projects: YYYY-MM; notes: YYYY-MM-DD; a bare
+// `year` also works), then by title. Placeholders that don't start with a digit sort last. Projects show only the year;
+// notes show the full date. Projects may also carry a `label` (research, industry, academic, teaching, personal, or
+// free text), shown as a colored [label] before the year; its data-label attribute is what the filter buttons match.
 const sortKey = (when) => (/^\d/.test(when) ? when : "")
+const dateOf = (v) => (v instanceof Date ? v.toISOString().slice(0, 10) : String(v ?? ""))
 
 function pagesIn(allFiles, folder) {
   return allFiles
     .filter((f) => f.slug?.startsWith(folder + "/") && !f.slug.endsWith("/index") && f.frontmatter?.draft !== true)
-    .map((f) => ({ slug: f.slug, ast: f.htmlAst, order: Number(f.frontmatter?.order ?? 99), title: f.frontmatter?.title ?? f.slug, when: String(f.frontmatter?.year ?? f.frontmatter?.date ?? ""), note: f.frontmatter?.description ?? "", label: String(f.frontmatter?.label ?? "").trim(), featured: f.frontmatter?.featured === true }))
-    .sort((a, b) => Number(b.featured) - Number(a.featured) || sortKey(b.when).localeCompare(sortKey(a.when)) || a.order - b.order || a.title.localeCompare(b.title))
+    .map((f) => {
+      const when = dateOf(f.frontmatter?.date ?? f.frontmatter?.year)
+      return { slug: f.slug, ast: f.htmlAst, title: f.frontmatter?.title ?? f.slug, when, shown: folder === "projects" ? when.slice(0, 4) : when.slice(0, 10), note: f.frontmatter?.description ?? "", label: String(f.frontmatter?.label ?? "").trim(), featured: f.frontmatter?.featured === true }
+    })
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || sortKey(b.when).localeCompare(sortKey(a.when)) || a.title.localeCompare(b.title))
 }
 
 // label filter buttons under a list heading: "all", the known kinds (always, in this order), then any other label in use
@@ -41,7 +46,7 @@ function List({ from, title, id, pages, filters = false }) {
           jsx("a", { class: "name internal", href: resolveRelative(from, p.slug), children: p.featured ? "* " + p.title : p.title }),
           jsx("span", { class: "dots", "aria-hidden": "true" }),
           p.label ? jsx("span", { class: "label", "data-label": p.label.toLowerCase(), children: "[" + p.label + "]" }) : null,
-          jsx("span", { class: "year", children: p.when.slice(0, 10) }),
+          jsx("span", { class: "year", children: p.shown }),
         ] }),
         p.note ? jsx("p", { class: "note", children: p.note }) : null,
       ] })) }),
@@ -76,7 +81,7 @@ function Gallery({ from, pages }) {
   return jsx("div", { class: "gallery", children: tiles.map(({ src, caption, page }) =>
     jsxs("a", { class: "tile", href: resolveRelative(from, page.slug), children: [
       jsx("img", { src: `${root}/${src}`, alt: caption, loading: "lazy" }),
-      jsxs("span", { class: "label", children: [page.title, jsx("span", { class: "year", children: page.when.slice(0, 10) })] }),
+      jsxs("span", { class: "label", children: [page.title, jsx("span", { class: "year", children: page.shown })] }),
     ] })) })
 }
 
