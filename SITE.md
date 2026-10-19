@@ -6,8 +6,8 @@ custom:
   `content/`. Pushing the vault triggers a rebuild here (`.github/workflows/site.yml` in the vault pings
   `deploy.yml`, which checks the vault out with the `VAULT_TOKEN` secret and builds `-d vault/Site`).
   Below, `content/` means that `Site/` folder. `index.md` is the home page (its body is the About section).
-  Adding a project: `content/projects/<name>.md` with `title`, `date` (month and year, `2026-03`; only the year is shown),
-  `description`.
+  Adding a project: `content/projects/<name>.md` with `title`, `date` (a full date, `2026-03-01`, so Obsidian's date
+  picker works; only the year is shown on the site), `description`.
   Projects can also set `label` (research, industry, academic, teaching, personal, or free text;
   shown as a colored `[label]` before the year; colors per kind are at the top of the label rules in `style.css`)
   and `featured: true` (listed first, with a `*` before the name).

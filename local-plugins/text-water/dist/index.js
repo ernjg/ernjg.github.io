@@ -10,8 +10,8 @@ import { resolveRelative, pathToRoot } from "@quartz-community/utils"
 const script = readFileSync(new URL("./water.js", import.meta.url), "utf-8")
 const css = readFileSync(new URL("./style.css", import.meta.url), "utf-8")
 
-// pages in a folder: featured first, then newest by frontmatter `date` (projects: YYYY-MM; notes: YYYY-MM-DD; a bare
-// `year` also works), then by title. Placeholders that don't start with a digit sort last. Projects show only the year;
+// pages in a folder: featured first, then newest by frontmatter `date` (a full YYYY-MM-DD date, which Obsidian's date
+// picker writes; a bare `year` also works), then by title. Placeholders that don't start with a digit sort last. Projects show only the year;
 // notes show the full date. Projects may also carry a `label` (research, industry, academic, teaching, personal, or
 // free text), shown as a colored [label] before the year; its data-label attribute is what the filter buttons match.
 const sortKey = (when) => (/^\d/.test(when) ? when : "")
