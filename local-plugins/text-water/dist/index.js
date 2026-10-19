@@ -115,8 +115,8 @@ export function TextWater() {
         jsxs("p", { class: "cap", children: [
           jsx("span", { id: "sunline", children: "sunlight through water, live over San Antonio" }),
           jsxs("span", { class: "modes", role: "group", "aria-label": "Drawn with", children: [
-            jsx("button", { type: "button", id: "m-ascii", "aria-pressed": "true", children: "ascii" }),
-            jsx("button", { type: "button", id: "m-braille", "aria-pressed": "false", children: "braille" }),
+            jsx("button", { type: "button", id: "m-braille", "aria-pressed": "true", children: "braille" }),
+            jsx("button", { type: "button", id: "m-ascii", "aria-pressed": "false", children: "ascii" }),
           ] }),
         ] }),
         jsx(MarginSheet, { from: slug, pages: [...pagesIn(allFiles, "projects"), ...pagesIn(allFiles, "notes")].sort((a, b) => b.when.localeCompare(a.when)) }),

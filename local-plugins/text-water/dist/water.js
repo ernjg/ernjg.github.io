@@ -31,7 +31,7 @@
   if (!pre || pre.dataset.running) return;   // only on the home page, and only once
   pre.dataset.running = '1';
   const rad = Math.PI / 180;
-  let mode = 'ascii';
+  let mode = 'braille';
 
   // ---- sun position (NOAA approximation) -----------------------------------------------------
   function sunPos(ms) {
@@ -277,7 +277,7 @@
     if (h) { measure(true); shine(sun, clock); draw(); }
   }
   modeBtns.forEach((b) => b.addEventListener('click', () => setMode(b.id.slice(2))));
-  if (store('water-mode') === 'braille') setMode('braille');
+  if (store('water-mode') === 'ascii') setMode('ascii');   // braille is the default; a chosen mode is remembered
 
   // ---- loop ----------------------------------------------------------------------------------
   // About 30 updates a second; the automaton steps at 60 a second regardless. A light rain drop
