@@ -38,3 +38,14 @@ h1, h2, h3, h4 { color: var(--dark); line-height: 1.55; }
 .modes button, .theme-switch button { color: var(--gray) !important; line-height: 1.55; }
 .modes button[aria-pressed="true"], .theme-switch button[aria-pressed="true"], .site-footer a { color: var(--dark) !important; }
 .listing .dots { color: var(--lightgray) !important; }
+
+// section headings as plain-text banners: "== Projects ======" running to the column's right edge
+.home .listing h2, article h2 { display: flex; align-items: baseline; gap: 1ch; min-width: 0; }
+.home .listing h2::before, article h2::before {
+  content: "=="; color: var(--gray); font-weight: 400; white-space: pre;
+}
+.home .listing h2::after, article h2::after {
+  content: "================================================================================================================================================================================================================================================";
+  flex: 1; min-width: 0; overflow: hidden; white-space: pre;
+  color: var(--gray); font-weight: 400;
+}
