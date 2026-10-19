@@ -24,7 +24,7 @@
   const BLEND = 0.45;                      // share of each new frame; the rest is last frame, so dots glide
   // drawing: a dot or glyph appears once light passes LO, fully dense at LO + SPAN (flat water = 1)
   const BRAILLE = { lo: 0.75, span: 1.5 }, ASCII = { lo: 0.6, span: 2.6 };
-  const RAMP = " .,'`:;-~=+*xoO#%@";
+  const RAMP = " ·:•º°coeO0Q8@";   // was " .,'`:;-~=+*xoO#%@"
   const COLORS = { day: ['#9CCFD8', '#2F7F8C'], dusk: ['#F0BC7C', '#9A5A18'], night: ['#A3B2DC', '#5A6690'] };   // [dark, light theme]
 
   const pre = document.getElementById('water'), sunline = document.getElementById('sunline');
