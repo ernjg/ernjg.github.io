@@ -4,7 +4,7 @@ configuration:
   enableSPA: false
   enablePopovers: false
   locale: en-US
-  baseUrl: ernjg.github.io
+  baseUrl: ejgomez.com
   ignorePatterns:
   - private
   - templates
@@ -262,7 +262,7 @@ plugins:
   enabled: true
   options:
     links:
-      GitHub: '#'
+      GitHub: https://github.com/ernjg
       CV: '#'
   order: 50
   layout:
